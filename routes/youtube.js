@@ -7,7 +7,8 @@ router.get("/",(req,res,next)=>{
     
     res.render("youtube/youtube",{
         oldInput:null,
-        error:null
+        error:null,
+        urlDownload:null,
     });
 })
 router.post("/",async (req,res,next)=>{
@@ -15,7 +16,8 @@ router.post("/",async (req,res,next)=>{
     if(musicName.indexOf("http")>-1 ||musicName.indexOf(".com")>-1||musicName.indexOf("wwww.youtube")>-1){
       return   res.render("youtube/youtube",{
             oldInput:{musicName:musicName},
-            error:"bad music name"
+            error:"bad music name",
+                
         });
     }
      musicName+=" lyrics";
@@ -35,7 +37,7 @@ router.post("/",async (req,res,next)=>{
         }
       };
       axios.request(options).then(function (response) {
-
+            
             res.redirect(response.data.link);
           
       }).catch(function (error) {
