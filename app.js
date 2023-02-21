@@ -11,6 +11,6 @@ app.set("view engine","ejs");
 app.set("views","./views");
 
 
-app.use("/youtube",youtubeRouter)
+app.use("/",youtubeRouter)
 
 app.listen(3000);
