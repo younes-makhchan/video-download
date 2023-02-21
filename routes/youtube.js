@@ -13,7 +13,7 @@ router.get("/",(req,res,next)=>{
 router.post("/",async (req,res,next)=>{
     let musicName=req.body.musicName;
     if(musicName.indexOf("http")>-1 ||musicName.indexOf(".com")>-1||musicName.indexOf("wwww.youtube")>-1){
-        res.render("youtube/youtube",{
+      return   res.render("youtube/youtube",{
             oldInput:{musicName:musicName},
             error:"bad music name"
         });
