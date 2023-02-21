@@ -25,7 +25,11 @@ body {
 /*-------------------------------------*/	
 
 .form-wrapper {
-    width: 450px;
+    display: flex;
+    margin: 0 auto;
+    justify-content: center;
+    max-width: 700px;
+    width: 75%;
     padding: 15px;
     background: #444;
     background: rgba(0,0,0,.2);
@@ -38,11 +42,10 @@ body {
 }
 
 .form-wrapper input {
-    width: 330px;
+    width: 80%;
     height: 20px;
     padding: 10px 5px;
-    float: left;    
-    font: bold 15px 'lucida sans', 'trebuchet MS', 'Tahoma';
+    font-size: 2.1vmin;
     border: 0;
     background: #eee;
     -moz-border-radius: 3px 0 0 3px;
@@ -77,15 +80,13 @@ body {
 }    
 
 .form-wrapper button {
-    overflow: visible;
+    width: 20%;
+    font-size: 2.1vmin;
     position: relative;
-    float: right;
     border: 0;
     padding: 0;
     cursor: pointer;
     height: 40px;
-    width: 110px;
-    font: bold 15px/40px 'lucida sans', 'trebuchet MS', 'Tahoma';
     color: #fff;
     text-transform: uppercase;
     background: #d83c3c;

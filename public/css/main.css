@@ -20,6 +20,10 @@ main{
 }
 main >div{
     margin: 15px;
+    width: 100%;
+}
+main >div h4{
+    font-size: 2.5vmin;
 }
 main h1{
     color: white;
