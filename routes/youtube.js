@@ -1,12 +1,17 @@
 const express=require("express");
 const router=express.Router();
 const axios=require("axios")
+
+
 router.get("/",(req,res,next)=>{
-    res.render("youtube");
+    res.render("youtube/youtube");
 })
-router.post("/mp3", (req,res,next)=>{
-    const {url}=req.body;
-    const videoId=url.split("/watch?v=")[1].split("&")[0];
+router.post("/mp3",async (req,res,next)=>{
+    let musicName=req.body.musicName+" lyrics";
+    const response=await axios.get("https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&q="+musicName+"&key=AIzaSyBFYvy18_rgbpcfoJNpNLvWzdtXMnlPK50");
+    const videoId=response.data.items[0].id.videoId;
+    // const {url}=req.body;
+    // const videoId=url.split("/watch?v=")[1].split("&")[0];
     const options = {
         method: 'GET',
         url: 'https://youtube-mp36.p.rapidapi.com/dl',
