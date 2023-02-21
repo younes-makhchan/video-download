@@ -1,9 +1,9 @@
 <%- include("../includes/head") %>
 
-   <link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/css/main.css">
 </head>
 <body>
-    
+  
     <main>
         <div>
             <h1>Download <span>Music</span>.AI</h1>
@@ -15,4 +15,7 @@
             <h4>Note:Add the author name for better result</h4>
         </div>
     </main>
+    <%if(error){%>
+        <script>alert('Invalid Input!\nExemple of Input "Another Love"')</script>
+            <%}%>
     <%- include("../includes/foot") %>
