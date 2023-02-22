@@ -1,10 +1,10 @@
 const express=require("express");
 const router=express.Router();
-const { getYoutube ,postYoutube} = require("../controllers/youtube");
+const { getprompt ,postprompt} = require("../controllers/youtube");
 
 
-router.get("/",getYoutube)
-router.post("/",postYoutube)
+router.get("/",getprompt)
+router.post("/",postprompt)
 
 
 module.exports=router;
