@@ -1,4 +1,4 @@
-
+require("dotenv").config();
 const axios=require("axios");
 
 const  musicDownload=async (videoId)=>{
@@ -31,7 +31,7 @@ function getOptions(index,videoId){
       lang: 'en'
     },
     headers: {
-      'X-RapidAPI-Key': '7df89c8ba9msh8d6ee421539a58ep18d983jsn13a652c76243',
+      'X-RapidAPI-Key': process.env.RAPID_API_KEY,
       'X-RapidAPI-Host': 't-one-youtube-converter.p.rapidapi.com'
     }
   }, 
@@ -40,7 +40,7 @@ function getOptions(index,videoId){
     url: "https://youtube-mp36.p.rapidapi.com/dl",
     params: {id: videoId},
     headers: {
-      'X-RapidAPI-Key': '7df89c8ba9msh8d6ee421539a58ep18d983jsn13a652c76243',
+      'X-RapidAPI-Key': process.env.RAPID_API_KEY,
       'X-RapidAPI-Host': "youtube-mp36.p.rapidapi.com"
     }
   }]
