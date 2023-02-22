@@ -5,16 +5,14 @@
     margin: 0;
     padding: 0;
     box-sizing: content-box;
-    font-family: 'Roboto', sans-serif;
-    text-decoration: none;
-      
+    font-family: 'Roboto', sans-serif;  
 }
 
 body{
     background-color: #202124;
 }
 main{
-    margin-top: 15vh;
+    margin-top: 20vh;
     display: flex;
   
     flex-direction: column;
