@@ -1,45 +1,52 @@
 const musicDownload=require("../util/musicDownload");
 const { Search } = require("../util/youtubeApi");
-exports.getYoutube=(req,res,next)=>{
+const musicSearch=require("../util/openai");
+exports.getprompt=(req,res,next)=>{
 
     
         res.render("youtube/youtube",{
             oldInput:null,
             error:null,
-            urlDownload:null,
+            videoUrl:null,
+            video:null
         });
     
 }
 
-exports.postYoutube=async (req,res,next)=>{
+exports.postprompt=async (req,res,next)=>{
   
-        let musicName=req.body.musicName;
-        if(musicName.indexOf("http")>-1 ||musicName.indexOf(".com")>-1||musicName.indexOf("wwww.youtube")>-1){
-          return   res.render("youtube/youtube",{
-                oldInput:{musicName:musicName},
-                error:`Invalid Input!\n Input Exemple :Another love `,
-                    
-            });
-        }
-        const query=musicName + "lyrics";
-
+        let description=req.body.description;
+        let videoUrl
     try{
-        
-          const videoId=await Search(query);
-          let link=await musicDownload(videoId);
-          res.set({
-            'Location':"/"
-          })
-          res.redirect(link);
+            const filter=`Your are Chatgpt , user has feels like this "${description}"  and want a modern song(available in youtube) describe his feelings: 
 
-        // const {url}=req.body;
-        // const videoId=url.split("/watch?v=")[1].split("&")[0];
-      
+            song name and author only:`;
+        let response=await musicSearch(filter);
+        const video=await Search(response);
+        const link=await musicDownload(video.id.videoId);
+        console.log(link)
+        videoUrl="https://www.youtube.com/watch?v="+video.id.videoId;
+        console.log(videoUrl);
+        return   res.render("youtube/youtube",{
+            oldInput:null,
+            error:null,
+            videoUrl:videoUrl,
+            mp3:link,
+            video:{
+                title:response,
+                description:video.snippet.description,
+                image:video.snippet.thumbnails.medium,
+
+            }
+        });
+        
     }catch(err){
         console.log(err);
         return   res.render("youtube/youtube",{
-            oldInput:{musicName:musicName},
-            error:"Error:talk with the developer",
+            oldInput:{description:description},
+            error:"Error:Please try again",
+            videoUrl:null,
+            video:null
                 
         });
     }
